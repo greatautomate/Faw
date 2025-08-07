@@ -201,7 +201,8 @@ async def backup_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 **কেন পরিবর্তন করা হয়েছে:**
 *   `get_full_backup` ফাংশনটিকে আরও কার্যকর এবং সংক্ষিপ্ত করা হয়েছে, যাতে এটি ডেটাবেসের সব ধরনের ডেটাকে সঠিকভাবে JSON ফরম্যাটে রূপান্তর করতে পারে।
 
-**`database.py` (চূড়ান্ত কোড):**```python
+**`database.py` (চূড়ান্ত কোড):**
+```python
 #========[ডেটাবেজ ব্যবস্থাপনা]========
 import pymongo
 import datetime
