@@ -1,0 +1,277 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>VIP VPS AUTO SCRIPT by Jubair Bro</title>
+<link rel="shortcut icon" href="favicon.ico">
+<!-- Google Fonts Import -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic" class=" crossorigin">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-light: #ffffff;
+    --text-light: #24292f;
+    --card-bg-light: #f6f8fa;
+    --border-light: #d0d7de;
+    --accent: #58a6ff;
+    --glow-start: #58a6ff;
+    --glow-end: #ff79c6;
+    --border-glow: linear-gradient(135deg, var(--glow-start), var(--glow-end), var(--glow-start));
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    line-height: 1.6;
+    background-image: 
+      linear-gradient(rgba(230, 230, 230, 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(230, 230, 230, 0.5) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* --- Overlay & Dialog --- */
+  .overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+  }
+  .dialog {
+    max-width: 480px; width: 90%;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    padding: 2px;
+    animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .dialog::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250%;
+    height: 250%;
+    background: var(--border-glow);
+    animation: rotate 4s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes pop {
+    from { transform: scale(0.8) translateY(20px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+  
+  .dialog-content {
+    background: var(--card-bg-light);
+    padding: 25px;
+    border-radius: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .dialog h1 { margin: 0 0 10px 0; font-size: 24px; color: var(--text-light); font-weight: 600; min-height: 32px; }
+  .dialog .subtitle { font-size: 16px; color: #57606a; margin-bottom: 20px; font-weight: 600; }
+  .dialog p { font-size: 14px; margin-bottom: 25px; }
+  .dialog-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+  /* --- Buttons --- */
+  .btn, .btn-close, .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 0;
+    padding: 10px 24px; border: none; border-radius: 8px; cursor: pointer; 
+    font-weight: 600; text-decoration: none; transition: all 0.2s ease;
+  }
+  .btn, .btn-close { background: var(--accent); color: #fff; }
+  .btn-secondary { background: #e1e4e8; color: var(--text-light); }
+  .btn:hover, .btn-close:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(88, 166, 255, 0.5); }
+  .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
+
+  /* --- Main Content --- */
+  .page-container { max-width: 960px; margin: 40px auto; padding: 0 20px; }
+  .section { background: var(--bg-light); padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid var(--border-light); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+  .section h2 { font-size: 20px; margin: 0 0 8px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
+  .section .section-description { font-size: 15px; color: #57606a; margin-bottom: 16px; }
+  .section h2 svg { color: var(--accent); }
+
+  /* --- Command Blocks --- */
+  .command-block { position: relative; background: #0d1117; border-radius: 8px; }
+  pre {
+    color: #4ade80;
+    padding: 20px 60px 20px 20px;
+    margin: 0; font-family: 'Roboto Mono', monospace; font-size: 14px;
+    white-space: pre; overflow-x: auto; line-height: 1.8;
+  }
+  .copy-btn {
+    position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.08); border: none; cursor: pointer; 
+    padding: 8px; border-radius: 6px; transition: background 0.2s;
+  }
+  .copy-btn:hover { background: rgba(255, 255, 255, 0.15); }
+  .copy-btn svg { display: block; stroke: #c9d1d9; }
+  
+  /* --- Screenshots Section --- */
+  .screenshots { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* Always 2 columns */
+    gap: 20px; 
+  }
+  .screenshot-item h3 { text-align: center; font-size: 16px; color: #444; margin: 0 0 10px 0; }
+  .screenshots img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border-light); transition: transform 0.3s, box-shadow 0.3s; }
+  .screenshots a:hover img { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+  
+  /* --- Features List --- */
+  .features-list { padding: 0; list-style-type: none; display: grid; grid-template-columns: 1fr; gap: 15px; }
+  .features-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; padding: 10px; border-radius: 8px; background: #eef2f6; }
+  .features-list svg { flex-shrink: 0; color: var(--accent); }
+  @media (min-width: 768px) { .features-list { grid-template-columns: 1fr 1fr; } }
+  
+  /* --- Footer & Toast --- */
+  footer { text-align: center; padding: 20px; font-size: 14px; color: #57606a; }
+  #toast { visibility: hidden; min-width: 150px; background: #24292f; color: #fff; text-align: center; border-radius: 8px; padding: 14px; position: fixed; z-index: 2000; left: 50%; bottom: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
+  #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
+</style>
+</head>
+<body>
+
+<!-- --- Welcome Dialog --- -->
+<div class="overlay" id="dialog">
+  <div class="dialog">
+    <div class="dialog-content">
+      <h1 id="welcome-title"></h1>
+      <p class="subtitle">👑 Powerful | Stylish | All-in-One 😈</p>
+      <p>The ultimate script for managing SSH, VPNs, Proxies, and more with a clean UI and powerful features.</p>
+      <div class="dialog-buttons">
+        <a href="https://t.me/jubairff" target="_blank" class="btn btn-secondary">Join Telegram</a>
+        <button class="btn-close" id="closeDialog">Explore Script</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --- Main Page Content --- -->
+<div class="page-container">
+  <!-- Screenshots -->
+  <div class="section">
+    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>Screenshots</h2>
+    <div class="screenshots">
+      <div class="screenshot-item">
+        <h3>Script Dashboard</h3>
+        <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" alt="Script Dashboard"></a>
+      </div>
+      <div class="screenshot-item">
+        <h3>Feature Showcase</h3>
+        <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" alt="Feature Showcase"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Installer Command -->
+  <div class="section">
+    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Installer</h2>
+    <p class="section-description">Full installation with just one single command.</p>
+    <div class="command-block">
+        <pre id="installerCmd">curl -o setup https://jubairbro.pages.dev/see && chmod +x setup && ./setup</pre>
+        <button class="copy-btn" onclick="copyText('installerCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+    </div>
+  </div>
+  
+  <!-- Key Features -->
+  <div class="section">
+    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Key Features</h2>
+    <ul class="features-list">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>All-in-One: SSH, OpenVPN, Xray & More.</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v-6M9 9h6"></path><circle cx="12" cy="12" r="10"></circle></svg>Auto Install, Custom Ports & User Expiry.</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>Traffic & Speed Limiting Capabilities.</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>Integrated HAProxy + Xray Core + Stats.</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>Ubuntu & Debian OS Supported.</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l.34.28.9.75 1.3.94.46.3.3.17.22.1.06.02.04.01.02.01h.01l.02.01h.02c.02 0 .04 0 .06 0h.02c.02 0 .04 0 .06 0h.02c.02 0 .04 0 .06 0h.02c.02 0 .04 0 .06 0h.01c.02 0 .04 0 .06 0h.01c.02 0 .04 0 .06 0h.01c.02 0 .04 0 .06 0l.02.01h.02l.02.01.04.01.06.02.22.1.3.17.46.3 1.3.94.9.75.34.28L12 2.69zM12 21.31l-.34-.28-.9-.75-1.3-.94-.46-.3-.3-.17-.22-.1-.06-.02-.04-.01-.02-.01H8.39l-.02-.01h-.02a.89.89 0 0 1-.06 0h-.02a.89.89 0 0 1-.06 0h-.02a.89.89 0 0 1-.06 0h-.02a.89.89 0 0 1-.06 0h-.01a.89.89 0 0 1-.06 0h-.01a.89.89 0 0 1-.06 0h-.01a.89.89 0 0 1-.06 0l-.02-.01h-.02l-.02-.01-.04-.01-.06-.02-.22-.1-.3-.17-.46-.3-1.3-.94-.9-.75-.34-.28L12 21.31z"></path></svg>Custom Branding for VIP Clients.</li>
+    </ul>
+  </div>
+  <!-- Ports Details -->
+  <div class="section">
+      <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12v-2M12 8H8M12 12h4M12 16H8M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>Comprehensive Port Details</h2>
+      <div class="command-block">
+        <pre style="color: #c9d1d9;">
+<span style="color:#58a6ff;">---[ SSH & VPN ]---</span>
+<b>OpenSSH:</b> 443, 80, 22
+<b>Dropbear:</b> 443, 109
+<b>SSL/TLS:</b> 443
+<b>SSH WS:</b> 80 | <b>SSH SSL WS:</b> 443
+<b>DNS Port:</b> 443, 53, 22
+<b>UdpSSH:</b> 1-65535
+<b>OVPN SSL:</b> 443 | <b>TCP:</b> 1194 | <b>UDP:</b> 2200
+<b>BadVPN UDP:</b> 7100, 7200, 7300
+
+<span style="color:#58a6ff;">---[ XRAY VLESS ]---</span>
+<b>TLS:</b> 443 | <b>non-TLS:</b> 80, 8080
+<b>GRPC:</b> 443 | <b>DNS:</b> 443, 53
+
+<span style="color:#58a6ff;">---[ XRAY VMESS ]---</span>
+<b>TLS:</b> 443 | <b>non-TLS:</b> 80, 8080
+<b>GRPC:</b> 443 | <b>DNS:</b> 443, 53
+
+<span style="color:#58a6ff;">---[ XRAY TROJAN & SS ]---</span>
+<b>Trojan TLS:</b> 443 | <b>non-TLS:</b> 80
+<b>Shadowsocks:</b> 443</pre>
+    </div>
+  </div>
+  <!-- Update Command -->
+  <div class="section">
+    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>Update Xray</h2>
+    <p class="section-description">Update Xray if you face any service error or problem. 🥹</p>
+    <div class="command-block">
+        <pre id="updateCmd">bash &lt;(curl -Ls https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) install</pre>
+        <button class="copy-btn" onclick="copyText('updateCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+    </div>
+  </div>
+  <!-- Contact -->
+  <div class="section" style="text-align: center;">
+    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7z"></path></svg>Contact & Support</h2>
+    <a class="btn" href="https://t.me/JubairZ" target="_blank">Contact @JubairZ on Telegram</a>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast">Copied to clipboard!</div>
+<footer>Powered by <a href="https://t.me/JubairZ" style="color:var(--accent); text-decoration:none;">Jubair Bro ツ</a></footer>
+
+<script>
+document.getElementById('closeDialog').addEventListener('click', () => { document.getElementById('dialog').style.display = 'none'; });
+
+const copyIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+
+function copyText(id, buttonElement) {
+  const preElement = document.getElementById(id);
+  const textToCopy = preElement.innerText.trim();
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    const toast = document.getElementById('toast');
+    toast.className = 'toast show';
+    setTimeout(() => { toast.className = 'toast'; }, 2500);
+    buttonElement.innerHTML = checkIcon;
+    setTimeout(() => { buttonElement.innerHTML = copyIcon; }, 2000);
+  });
+}
+
+const typingText = "VIP VPS AUTO SCRIPT";
+const typingElement = document.getElementById('welcome-title');
+let index = 0;
+function type() {
+  if (index < typingText.length) {
+    typingElement.textContent = typingText.substring(0, index + 1);
+    index++;
+    setTimeout(type, 100);
+  }
+}
+document.addEventListener('DOMContentLoaded', type);
+</script>
+
+</body>
+</html>
