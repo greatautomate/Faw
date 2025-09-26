@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +7,7 @@
 <link rel="shortcut icon" href="favicon.ico">
 <!-- Google Fonts Import -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic" class=" crossorigin">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -46,8 +45,8 @@
     max-width: 480px; width: 90%;
     position: relative;
     border-radius: 18px;
-    overflow: hidden;
-    padding: 2px;
+    overflow: hidden; /* Crucial for the border effect */
+    padding: 2px; /* Creates the border thickness */
     animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   .dialog::before {
@@ -55,7 +54,7 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 250%;
+    width: 250%; /* Oversized gradient */
     height: 250%;
     background: var(--border-glow);
     animation: rotate 4s linear infinite;
@@ -73,7 +72,7 @@
   .dialog-content {
     background: var(--card-bg-light);
     padding: 25px;
-    border-radius: 16px;
+    border-radius: 16px; /* Slightly smaller inner radius */
     position: relative;
     z-index: 1;
   }
@@ -96,8 +95,7 @@
   /* --- Main Content --- */
   .page-container { max-width: 960px; margin: 40px auto; padding: 0 20px; }
   .section { background: var(--bg-light); padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid var(--border-light); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-  .section h2 { font-size: 20px; margin: 0 0 8px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
-  .section .section-description { font-size: 15px; color: #57606a; margin-bottom: 16px; }
+  .section h2 { font-size: 20px; margin: 0 0 16px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
   .section h2 svg { color: var(--accent); }
 
   /* --- Command Blocks --- */
@@ -116,23 +114,16 @@
   .copy-btn:hover { background: rgba(255, 255, 255, 0.15); }
   .copy-btn svg { display: block; stroke: #c9d1d9; }
   
-  /* --- Screenshots Section --- */
-  .screenshots { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; /* Always 2 columns */
-    gap: 20px; 
-  }
-  .screenshot-item h3 { text-align: center; font-size: 16px; color: #444; margin: 0 0 10px 0; }
+  /* --- Other sections --- */
+  .screenshots { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .screenshots img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border-light); transition: transform 0.3s, box-shadow 0.3s; }
   .screenshots a:hover img { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
   
-  /* --- Features List --- */
   .features-list { padding: 0; list-style-type: none; display: grid; grid-template-columns: 1fr; gap: 15px; }
   .features-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; padding: 10px; border-radius: 8px; background: #eef2f6; }
   .features-list svg { flex-shrink: 0; color: var(--accent); }
   @media (min-width: 768px) { .features-list { grid-template-columns: 1fr 1fr; } }
   
-  /* --- Footer & Toast --- */
   footer { text-align: center; padding: 20px; font-size: 14px; color: #57606a; }
   #toast { visibility: hidden; min-width: 150px; background: #24292f; color: #fff; text-align: center; border-radius: 8px; padding: 14px; position: fixed; z-index: 2000; left: 50%; bottom: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
   #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
@@ -145,7 +136,7 @@
   <div class="dialog">
     <div class="dialog-content">
       <h1 id="welcome-title"></h1>
-      <p class="subtitle">👑 Powerful | Stylish | All-in-One 😈</p>
+      <p class="subtitle"> Powerful | Stylish | All-in-One </p>
       <p>The ultimate script for managing SSH, VPNs, Proxies, and more with a clean UI and powerful features.</p>
       <div class="dialog-buttons">
         <a href="https://t.me/jubairff" target="_blank" class="btn btn-secondary">Join Telegram</a>
@@ -158,30 +149,18 @@
 <!-- --- Main Page Content --- -->
 <div class="page-container">
   <!-- Screenshots -->
-  <div class="section">
-    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>Screenshots</h2>
-    <div class="screenshots">
-      <div class="screenshot-item">
-        <h3>Script Dashboard</h3>
-        <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" alt="Script Dashboard"></a>
-      </div>
-      <div class="screenshot-item">
-        <h3>Feature Showcase</h3>
-        <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" alt="Feature Showcase"></a>
-      </div>
-    </div>
+  <div class="section screenshots">
+    <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" alt="Script Dashboard"></a>
+    <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" alt="Feature Showcase"></a>
   </div>
-
   <!-- Installer Command -->
   <div class="section">
     <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Installer</h2>
-    <p class="section-description">Full installation with just one single command.</p>
     <div class="command-block">
         <pre id="installerCmd">curl -o setup https://jubairbro.pages.dev/see && chmod +x setup && ./setup</pre>
-        <button class="copy-btn" onclick="copyText('installerCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+     <!--   <button class="copy-btn" onclick="copyText('installerCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button> -->
     </div>
   </div>
-  
   <!-- Key Features -->
   <div class="section">
     <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Key Features</h2>
@@ -225,10 +204,9 @@
   <!-- Update Command -->
   <div class="section">
     <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>Update Xray</h2>
-    <p class="section-description">Update Xray if you face any service error or problem. 🥹</p>
     <div class="command-block">
         <pre id="updateCmd">bash &lt;(curl -Ls https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) install</pre>
-        <button class="copy-btn" onclick="copyText('updateCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      <!--  <button class="copy-btn" onclick="copyText('updateCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button> -->
     </div>
   </div>
   <!-- Contact -->
@@ -240,7 +218,7 @@
 
 <!-- Toast Notification -->
 <div id="toast">Copied to clipboard!</div>
-<footer>Powered by <a href="https://t.me/JubairZ" style="color:var(--accent); text-decoration:none;">Jubair Bro ツ</a></footer>
+<footer>Powered by <a href="https://t.me/JubairZ" style="color:var(--accent); text-decoration:none;">Jubair Bro </a></footer>
 
 <script>
 document.getElementById('closeDialog').addEventListener('click', () => { document.getElementById('dialog').style.display = 'none'; });
