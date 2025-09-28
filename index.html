@@ -5,20 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>VIP VPS AUTO SCRIPT by Jubair Bro</title>
 <link rel="shortcut icon" href="favicon.ico">
-<!-- Google Fonts Import -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-light: #ffffff;
-    --text-light: #24292f;
-    --card-bg-light: #f6f8fa;
-    --border-light: #d0d7de;
+    /* --- DARK MODE VARIABLES --- */
+    --bg-light: #0d1117; /* Dark background */
+    --text-light: #c9d1d9; /* Light text */
+    --card-bg-light: #161b22; /* Slightly lighter dark for cards */
+    --border-light: #30363d; /* Subtle dark border */
     --accent: #58a6ff;
     --glow-start: #58a6ff;
     --glow-end: #ff79c6;
     --border-glow: linear-gradient(135deg, var(--glow-start), var(--glow-end), var(--glow-start));
+    /* Grid color is also changed in body for better contrast */
   }
   
   body {
@@ -27,9 +28,10 @@
     background-color: var(--bg-light);
     color: var(--text-light);
     line-height: 1.6;
+    /* Updated grid lines for dark mode */
     background-image: 
-      linear-gradient(rgba(230, 230, 230, 0.5) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(230, 230, 230, 0.5) 1px, transparent 1px);
+      linear-gradient(rgba(48, 54, 61, 0.5) 1px, transparent 1px), /* Use a darker, subtle grid line color */
+      linear-gradient(90deg, rgba(48, 54, 61, 0.5) 1px, transparent 1px);
     background-size: 30px 30px;
   }
 
@@ -77,7 +79,7 @@
     z-index: 1;
   }
   .dialog h1 { margin: 0 0 10px 0; font-size: 24px; color: var(--text-light); font-weight: 600; min-height: 32px; }
-  .dialog .subtitle { font-size: 16px; color: #57606a; margin-bottom: 20px; font-weight: 600; }
+  .dialog .subtitle { font-size: 16px; color: #8b949e; margin-bottom: 20px; font-weight: 600; } /* Adjusted subtitle color for dark mode */
   .dialog p { font-size: 14px; margin-bottom: 25px; }
   .dialog-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
 
@@ -88,18 +90,34 @@
     font-weight: 600; text-decoration: none; transition: all 0.2s ease;
   }
   .btn, .btn-close { background: var(--accent); color: #fff; }
-  .btn-secondary { background: #e1e4e8; color: var(--text-light); }
+  /* Adjusted secondary button for dark mode */
+  .btn-secondary { background: #30363d; color: var(--text-light); border: 1px solid #484f58;} 
   .btn:hover, .btn-close:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(88, 166, 255, 0.5); }
-  .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
+  .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); }
 
   /* --- Main Content --- */
   .page-container { max-width: 960px; margin: 40px auto; padding: 0 20px; }
-  .section { background: var(--bg-light); padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid var(--border-light); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+  .section { 
+    background: var(--card-bg-light); 
+    padding: 24px; 
+    border-radius: 12px; 
+    margin-bottom: 24px; 
+    border: 1px solid var(--border-light); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Increased shadow for depth */
+  }
   .section h2 { font-size: 20px; margin: 0 0 16px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; }
   .section h2 svg { color: var(--accent); }
+  
+  /* ADDED STYLE FOR SUBHEADINGS */
+  .section .sub-heading { 
+    font-size: 15px; 
+    color: #8b949e; 
+    margin: -10px 0 16px 0; 
+    font-style: italic;
+  }
 
   /* --- Command Blocks --- */
-  .command-block { position: relative; background: #0d1117; border-radius: 8px; }
+  .command-block { position: relative; background: #010409; border-radius: 8px; } /* Slightly darker background for code block */
   pre {
     color: #4ade80;
     padding: 20px 60px 20px 20px;
@@ -117,21 +135,21 @@
   /* --- Other sections --- */
   .screenshots { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .screenshots img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border-light); transition: transform 0.3s, box-shadow 0.3s; }
-  .screenshots a:hover img { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+  .screenshots a:hover img { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
   
   .features-list { padding: 0; list-style-type: none; display: grid; grid-template-columns: 1fr; gap: 15px; }
-  .features-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; padding: 10px; border-radius: 8px; background: #eef2f6; }
+  /* Adjusted feature list item background for dark mode */
+  .features-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; padding: 10px; border-radius: 8px; background: #21262d; border: 1px solid #30363d; }
   .features-list svg { flex-shrink: 0; color: var(--accent); }
   @media (min-width: 768px) { .features-list { grid-template-columns: 1fr 1fr; } }
   
-  footer { text-align: center; padding: 20px; font-size: 14px; color: #57606a; }
-  #toast { visibility: hidden; min-width: 150px; background: #24292f; color: #fff; text-align: center; border-radius: 8px; padding: 14px; position: fixed; z-index: 2000; left: 50%; bottom: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
+  footer { text-align: center; padding: 20px; font-size: 14px; color: #8b949e; } /* Adjusted footer color */
+  #toast { visibility: hidden; min-width: 150px; background: #c9d1d9; color: #0d1117; text-align: center; border-radius: 8px; padding: 14px; position: fixed; z-index: 2000; left: 50%; bottom: 30px; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, bottom 0.3s; } /* Adjusted toast colors */
   #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
 </style>
 </head>
 <body>
 
-<!-- --- Welcome Dialog --- -->
 <div class="overlay" id="dialog">
   <div class="dialog">
     <div class="dialog-content">
@@ -146,29 +164,33 @@
   </div>
 </div>
 
-<!-- --- Main Page Content --- -->
 <div class="page-container">
-  <!-- Screenshots -->
-  <div class="section screenshots">
-    <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" alt="Script Dashboard"></a>
-    <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" alt="Feature Showcase"></a>
+  <div class="section">
+    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Dashboard Preview</h2>
+    <p class="sub-heading">See the clean, powerful user interface and feature-rich console.</p>
+    <div class="screenshots">
+        <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025132.jpg" alt="Script Dashboard"></a>
+        <a href="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" target="_blank"><img src="https://raw.githubusercontent.com/jubairbro/Faw/refs/heads/main/photos/Screenshot_20250926_025338.jpg" alt="Feature Showcase"></a>
+    </div>
   </div>
-  <!-- Installer Command -->
   <div class="section">
     <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Installer</h2>
+    <p class="sub-heading">One command installation on VPS</p>
     <div class="command-block">
         <pre id="installerCmd">curl -o setup https://jubairbro.pages.dev/see && chmod +x setup && ./setup</pre>
-     <!--   <button class="copy-btn" onclick="copyText('installerCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button> -->
     </div>
   </div>
     <div class="section">
     <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Telegram Bot Installer</h2>
+    <p class="sub-heading">One command installation on VPS | Manage your VPS directly from Telegram.</p>
     <div class="command-block">
-        <pre id="installerCmd">bash <(curl -s https://raw.githubusercontent.com/jubairbro/Premium/refs/heads/main/bot/bot.sh)</pre>
-     <!--   <button class="copy-btn" onclick="copyText('installerCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button> -->
+        <pre id="botInstallerCmd">bash <(curl -s https://raw.githubusercontent.com/jubairbro/Premium/refs/heads/main/bot/bot.sh)</pre>
+    </div>
+    <div style="margin-top: 15px; font-size: 14px; background: #21262d; padding: 10px; border-radius: 6px; border: 1px solid #30363d;">
+        <span style="color: #58a6ff;">Bot Features:</span> 
+        𝗖𝗿𝗲𝗮𝘁𝗲 & 𝗺𝗮𝗻𝗮𝗴𝗲 𝘂𝘀𝗲𝗿𝘀. 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲 𝘁𝗿𝗶𝗮𝗹 𝗮𝗰𝗰𝗼𝘂𝗻𝘁𝘀. 𝗖𝗵𝗲𝗰𝗸 𝘀𝗲𝗿𝘃𝗲𝗿 𝘀𝘁𝗮𝘁𝘂𝘀.
     </div>
   </div>
-  <!-- Key Features -->
   <div class="section">
     <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Key Features</h2>
     <ul class="features-list">
@@ -180,7 +202,6 @@
         <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l.34.28.9.75 1.3.94.46.3.3.17.22.1.06.02.04.01.02.01h.01l.02.01h.02c.02 0 .04 0 .06 0h.02c.02 0 .04 0 .06 0h.02c.02 0 .04 0 .06 0h.02c.02 0 .04 0 .06 0h.01c.02 0 .04 0 .06 0h.01c.02 0 .04 0 .06 0h.01c.02 0 .04 0 .06 0l.02.01h.02l.02.01.04.01.06.02.22.1.3.17.46.3 1.3.94.9.75.34.28L12 2.69zM12 21.31l-.34-.28-.9-.75-1.3-.94-.46-.3-.3-.17-.22-.1-.06-.02-.04-.01-.02-.01H8.39l-.02-.01h-.02a.89.89 0 0 1-.06 0h-.02a.89.89 0 0 1-.06 0h-.02a.89.89 0 0 1-.06 0h-.02a.89.89 0 0 1-.06 0h-.01a.89.89 0 0 1-.06 0h-.01a.89.89 0 0 1-.06 0h-.01a.89.89 0 0 1-.06 0l-.02-.01h-.02l-.02-.01-.04-.01-.06-.02-.22-.1-.3-.17-.46-.3-1.3-.94-.9-.75-.34-.28L12 21.31z"></path></svg>Custom Branding for VIP Clients.</li>
     </ul>
   </div>
-  <!-- Ports Details -->
   <div class="section">
       <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12v-2M12 8H8M12 12h4M12 16H8M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>Comprehensive Port Details</h2>
       <div class="command-block">
@@ -208,22 +229,18 @@
 <b>Shadowsocks:</b> 443</pre>
     </div>
   </div>
-  <!-- Update Command -->
   <div class="section">
     <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>Update Xray</h2>
     <div class="command-block">
         <pre id="updateCmd">bash &lt;(curl -Ls https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) install</pre>
-      <!--  <button class="copy-btn" onclick="copyText('updateCmd', this)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button> -->
     </div>
   </div>
-  <!-- Contact -->
   <div class="section" style="text-align: center;">
     <h2><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7z"></path></svg>Contact & Support</h2>
     <a class="btn" href="https://t.me/JubairZ" target="_blank">Contact @JubairZ on Telegram</a>
   </div>
 </div>
 
-<!-- Toast Notification -->
 <div id="toast">Copied to clipboard!</div>
 <footer>Powered by <a href="https://t.me/JubairZ" style="color:var(--accent); text-decoration:none;">Jubair Bro </a></footer>
 
@@ -240,8 +257,11 @@ function copyText(id, buttonElement) {
     const toast = document.getElementById('toast');
     toast.className = 'toast show';
     setTimeout(() => { toast.className = 'toast'; }, 2500);
-    buttonElement.innerHTML = checkIcon;
-    setTimeout(() => { buttonElement.innerHTML = copyIcon; }, 2000);
+    // Note: The copy button is commented out in the HTML, so this part won't run unless uncommented.
+    // if(buttonElement) {
+    //   buttonElement.innerHTML = checkIcon;
+    //   setTimeout(() => { buttonElement.innerHTML = copyIcon; }, 2000);
+    // }
   });
 }
 
