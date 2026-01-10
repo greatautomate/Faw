@@ -1,5 +1,10 @@
-pass=sensei123|30-12-2026
-link=https://t.me/JubairSensei
-apikey=app
-apiurl=https://premium.jubairbro.store:81/api
-announcement=Server is Online! Enjoy Bombing.
+pass = 1234 | 31-12-2026
+link = https://t.me/JubairZ
+apiurl = https://premium.jubairbro.store:81/api
+apikey = app
+announcement = Server is Online! Enjoy Bombing.
+s_startup = https://www.myinstants.com/media/sounds/jarvis-on.mp3
+s_access = https://www.myinstants.com/media/sounds/access-granted.mp3
+s_denied = https://www.myinstants.com/media/sounds/access-denied_1.mp3
+s_attack = https://www.myinstants.com/media/sounds/loading-sound-effect.mp3
+s_finish = https://www.myinstants.com/media/sounds/mission-passed.mp3
