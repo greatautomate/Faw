@@ -1,5 +1,5 @@
 pass=sensei123|30-12-2026
 link=https://t.me/JubairSensei
 apikey=app
-apiurl=https://api.jubairbro.store
+apiurl=https://premium.jubairbro.store:81/api
 announcement=Server is Online! Enjoy Bombing.
