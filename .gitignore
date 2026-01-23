@@ -1,0 +1,25 @@
+# Archives (ZIP সহ সব কম্প্রেসড ফাইল ইগনোর করবে)
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Dependencies (সব ফোল্ডারের node_modules ইগনোর করবে)
+node_modules/
+**/node_modules/
+
+# Logs & System Files
+*.log
+.DS_Store
+Thumbs.db
+.env
+
+# Build Output (new ফোল্ডারের ভেতর dist থাকলে সেটা ইগনোর করবে)
+**/dist/
+
+# Source Code specific (যদি রুটে ভুল করে চলে আসে)
+*.tsx
+*.ts
+# তবে vite config থাকলে সেটা থাকুক
+!vite.config.ts
